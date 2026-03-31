@@ -1,11 +1,5 @@
-def get_signal(current_price, moving_average_20, moving_average_50):
-    if current_price > moving_average_20 and current_price > moving_average_50:
-        return "GREEN", "Trend is stronger. Good day to review put-selling or staying invested."
-    elif current_price > moving_average_20 and current_price < moving_average_50:
-        return "YELLOW", "Mixed trend. Better to wait and research."
-    else:
-        return "RED", "Weak trend. Avoid new bullish options trades for now."
-
+from signals import get_signal
+from data import get_sample_market_data
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -16,12 +10,7 @@ choice = input("Enter choice (1-3): ")
 
 watchlist = ["VOO", "SPY", "NVDA"]
 account_cash = 25000
-
-market_data = {
-    "VOO": {"current_price": 548, "ma20": 545, "ma50": 552},
-    "SPY": {"current_price": 649, "ma20": 646, "ma50": 640},
-    "NVDA": {"current_price": 248, "ma20": 251, "ma50": 260},
-}
+market_data = get_sample_market_data()
 
 if choice == "1":
     print("\nWatchlist:")
