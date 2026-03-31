@@ -1,5 +1,5 @@
 from signals import get_signal
-from data import get_sample_market_data
+from data import get_live_market_data
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -10,7 +10,6 @@ choice = input("Enter choice (1-3): ")
 
 watchlist = ["VOO", "SPY", "NVDA"]
 account_cash = 25000
-market_data = get_sample_market_data()
 
 if choice == "1":
     print("\nWatchlist:")
@@ -30,7 +29,12 @@ elif choice == "3":
     results = []
 
     for symbol in watchlist:
-        data = market_data[symbol]
+        data = get_live_market_data(symbol)
+
+        if data is None:
+            print(f"\nCould not get data for {symbol}")
+            continue
+
         signal, message = get_signal(
             data["current_price"],
             data["ma20"],

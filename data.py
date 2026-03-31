@@ -1,6 +1,20 @@
-def get_sample_market_data():
+import yfinance as yf
+
+
+def get_live_market_data(symbol):
+    ticker = yf.Ticker(symbol)
+    history = ticker.history(period="3mo")
+
+    if history.empty:
+        return None
+
+    closes = history["Close"]
+    current_price = round(closes.iloc[-1], 2)
+    ma20 = round(closes.rolling(20).mean().iloc[-1], 2)
+    ma50 = round(closes.rolling(50).mean().iloc[-1], 2)
+
     return {
-        "VOO": {"current_price": 548, "ma20": 545, "ma50": 552},
-        "SPY": {"current_price": 649, "ma20": 646, "ma50": 640},
-        "NVDA": {"current_price": 248, "ma20": 251, "ma50": 260},
+        "current_price": current_price,
+        "ma20": ma20,
+        "ma50": ma50,
     }
