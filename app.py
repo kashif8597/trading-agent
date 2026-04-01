@@ -25,7 +25,6 @@ elif choice == "3":
     green_count = 0
     yellow_count = 0
     red_count = 0
-
     results = []
 
     for symbol in watchlist:
