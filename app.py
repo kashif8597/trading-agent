@@ -1,6 +1,7 @@
 from signals import get_signal
 from data import get_live_market_data
 from advisor import get_action
+from risk import assess_risk
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -42,8 +43,19 @@ elif choice == "3":
         )
 
         action, rationale = get_action(signal)
+        risk_level, risk_status, risk_note = assess_risk(signal, action)
 
-        results.append((symbol, data, signal, message, action, rationale))
+        results.append((
+            symbol,
+            data,
+            signal,
+            message,
+            action,
+            rationale,
+            risk_level,
+            risk_status,
+            risk_note
+        ))
 
         if signal == "GREEN":
             green_count += 1
@@ -63,7 +75,17 @@ elif choice == "3":
 
     print(f"Overall market tone: {overall_posture}")
 
-    for symbol, data, signal, message, action, rationale in results:
+    for (
+        symbol,
+        data,
+        signal,
+        message,
+        action,
+        rationale,
+        risk_level,
+        risk_status,
+        risk_note
+    ) in results:
         print(f"\n{symbol}")
         print(f"Current price: {data['current_price']}")
         print(f"20-day average: {data['ma20']}")
@@ -72,6 +94,9 @@ elif choice == "3":
         print(message)
         print(f"Suggested action: {action}")
         print(f"Rationale: {rationale}")
+        print(f"Risk level: {risk_level}")
+        print(f"Risk status: {risk_status}")
+        print(f"Risk note: {risk_note}")
 
 else:
     print("\nInvalid choice.")
