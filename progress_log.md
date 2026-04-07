@@ -54,3 +54,6 @@
 - Added `report_writer.py` to generate timestamped daily market summary files
 - Created `reports/` folder for saved agent outputs
 - Verified report generation with live market data and signal/action/risk output
+- Improved portfolio-aware recommendation logic for weak-trend scenarios
+- Updated RED-case handling to distinguish between existing holdings and no-position cases
+- Strengthened decision-support realism by making portfolio context more specific and actionable

@@ -122,3 +122,8 @@ This project now better supports my transition toward AI transformation leadersh
 ## Traceability and Output Evolution
 
 The prototype now generates saved report files for each run. This improves traceability, makes the workflow more realistic, and demonstrates a more complete decision-support pattern rather than a one-time console script.
+## Portfolio Context Evolution
+
+The prototype now incorporates portfolio-aware context into its recommendation layer. This means the same market signal can produce different guidance depending on whether a position already exists and whether cash is available.
+
+This is important because practical AI-enabled decision support should not treat all users or all situations the same. Context changes the recommendation.

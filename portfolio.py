@@ -37,4 +37,16 @@ def adjust_action_for_portfolio(symbol, signal, action, portfolio):
                 "Trend is mixed and no existing position justifies immediate action."
             )
 
+    elif signal == "RED":
+        if shares > 0:
+            return (
+                "Protect current position and avoid adding exposure",
+                "Trend is weak and an existing position suggests caution rather than adding bullish risk."
+            )
+        else:
+            return (
+                "Avoid initiating bullish exposure",
+                "Trend is weak and no current position supports opening a new bullish idea."
+            )
+
     return action, "Default portfolio context applied."
