@@ -3,6 +3,7 @@ from data import get_live_market_data
 from advisor import get_action
 from risk import assess_risk
 from report_writer import write_report
+from portfolio import get_portfolio_context, adjust_action_for_portfolio
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -12,7 +13,8 @@ print("3. Check signals for all symbols")
 choice = input("Enter choice (1-3): ")
 
 watchlist = ["VOO", "SPY", "NVDA"]
-account_cash = 25000
+portfolio = get_portfolio_context()
+account_cash = portfolio["cash"]
 
 if choice == "1":
     print("\nWatchlist:")
@@ -21,6 +23,9 @@ if choice == "1":
 
 elif choice == "2":
     print(f"\nAvailable cash: ${account_cash:,}")
+    print("Current holdings:")
+    for symbol, shares in portfolio["holdings"].items():
+        print(f"- {symbol}: {shares} shares")
 
 elif choice == "3":
     print("\nSignal report:")
@@ -43,7 +48,14 @@ elif choice == "3":
             data["ma50"]
         )
 
-        action, rationale = get_action(signal)
+        base_action, rationale = get_action(signal)
+        action, portfolio_note = adjust_action_for_portfolio(
+            symbol,
+            signal,
+            base_action,
+            portfolio
+        )
+
         risk_level, risk_status, risk_note = assess_risk(signal, action)
 
         results.append((
@@ -53,6 +65,7 @@ elif choice == "3":
             message,
             action,
             rationale,
+            portfolio_note,
             risk_level,
             risk_status,
             risk_note
@@ -83,6 +96,7 @@ elif choice == "3":
         message,
         action,
         rationale,
+        portfolio_note,
         risk_level,
         risk_status,
         risk_note
@@ -94,7 +108,8 @@ elif choice == "3":
         print(f"Signal: {signal}")
         print(message)
         print(f"Suggested action: {action}")
-        print(f"Rationale: {rationale}")
+        print(f"Base rationale: {rationale}")
+        print(f"Portfolio context: {portfolio_note}")
         print(f"Risk level: {risk_level}")
         print(f"Risk status: {risk_status}")
         print(f"Risk note: {risk_note}")

@@ -24,6 +24,7 @@ def write_report(overall_posture, green_count, yellow_count, red_count, results)
             message,
             action,
             rationale,
+            portfolio_note,
             risk_level,
             risk_status,
             risk_note
@@ -36,7 +37,8 @@ def write_report(overall_posture, green_count, yellow_count, red_count, results)
             f.write(f"Signal: {signal}\n")
             f.write(f"Signal note: {message}\n")
             f.write(f"Suggested action: {action}\n")
-            f.write(f"Rationale: {rationale}\n")
+            f.write(f"Base rationale: {rationale}\n")
+            f.write(f"Portfolio context: {portfolio_note}\n")
             f.write(f"Risk level: {risk_level}\n")
             f.write(f"Risk status: {risk_status}\n")
             f.write(f"Risk note: {risk_note}\n\n")
