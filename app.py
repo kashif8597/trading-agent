@@ -1,5 +1,6 @@
 from signals import get_signal
 from data import get_live_market_data
+from advisor import get_action
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -40,7 +41,9 @@ elif choice == "3":
             data["ma50"]
         )
 
-        results.append((symbol, data, signal, message))
+        action, rationale = get_action(signal)
+
+        results.append((symbol, data, signal, message, action, rationale))
 
         if signal == "GREEN":
             green_count += 1
@@ -52,19 +55,23 @@ elif choice == "3":
     print(f"\nSummary: {green_count} GREEN, {yellow_count} YELLOW, {red_count} RED")
 
     if green_count > yellow_count and green_count > red_count:
-        print("Overall market tone: Bullish leaning")
+        overall_posture = "Bullish leaning"
     elif red_count > green_count and red_count > yellow_count:
-        print("Overall market tone: Weak / defensive")
+        overall_posture = "Weak / defensive"
     else:
-        print("Overall market tone: Mixed")
+        overall_posture = "Mixed"
 
-    for symbol, data, signal, message in results:
+    print(f"Overall market tone: {overall_posture}")
+
+    for symbol, data, signal, message, action, rationale in results:
         print(f"\n{symbol}")
         print(f"Current price: {data['current_price']}")
         print(f"20-day average: {data['ma20']}")
         print(f"50-day average: {data['ma50']}")
         print(f"Signal: {signal}")
         print(message)
+        print(f"Suggested action: {action}")
+        print(f"Rationale: {rationale}")
 
 else:
     print("\nInvalid choice.")
