@@ -2,6 +2,7 @@ from signals import get_signal
 from data import get_live_market_data
 from advisor import get_action
 from risk import assess_risk
+from report_writer import write_report
 
 print("Trading Agent Menu")
 print("1. Show watchlist")
@@ -97,6 +98,15 @@ elif choice == "3":
         print(f"Risk level: {risk_level}")
         print(f"Risk status: {risk_status}")
         print(f"Risk note: {risk_note}")
+
+    report_path = write_report(
+        overall_posture,
+        green_count,
+        yellow_count,
+        red_count,
+        results
+    )
+    print(f"\nReport saved to: {report_path}")
 
 else:
     print("\nInvalid choice.")
