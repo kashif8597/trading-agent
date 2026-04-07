@@ -96,3 +96,25 @@ The next steps for this project include:
 ## Interview Narrative
 This project shows that I can do more than talk about AI transformation conceptually.  I can take a real workflow, break it into components, build a functioning prototype, version it professionally, and evolve it into a more structured decision-support system.
 
+## Latest Evolution
+
+The project has now evolved beyond a basic signal scanner.
+
+It currently includes:
+- a live data layer
+- a signal evaluation layer
+- an advisor layer for suggested actions
+- a risk layer for decision gating
+- an orchestration layer in the main application
+
+This structure better reflects how AI-enabled decision-support systems are built in practice: modularly, with explainability, controls, and room for future workflow expansion.
+
+## April 7, 2026 ---Why This Matters for My Pivot
+
+This project now better supports my transition toward AI transformation leadership because it demonstrates:
+
+- modular workflow thinking
+- explainable recommendations
+- controlled decision support
+- practical use of live data
+- iterative product evolution with versioned milestones
