@@ -49,3 +49,8 @@
   - `risk.py`
   - `app.py`
 - Strengthened project positioning as an agentic decision-support prototype aligned to AI transformation leadership
+- Added report_writer.py
+- Reports now save to reports/
+- Added `report_writer.py` to generate timestamped daily market summary files
+- Created `reports/` folder for saved agent outputs
+- Verified report generation with live market data and signal/action/risk output

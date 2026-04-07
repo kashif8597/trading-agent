@@ -118,3 +118,7 @@ This project now better supports my transition toward AI transformation leadersh
 - controlled decision support
 - practical use of live data
 - iterative product evolution with versioned milestones
+- system now produces saved outputs, improving traceability and workflow realism
+## Traceability and Output Evolution
+
+The prototype now generates saved report files for each run. This improves traceability, makes the workflow more realistic, and demonstrates a more complete decision-support pattern rather than a one-time console script.
